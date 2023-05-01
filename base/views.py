@@ -124,20 +124,38 @@ def project_submission(request, pk):
 
 
 # Add owner authentication
+# @login_required(login_url='/login')
+# def update_submission(request, pk):
+#     submission = Submission.objects.get(id=pk)
+#     event = submission.event
+#     form = SubmissionForm(instance=submission)
+    
+#     if request.user != submission.user:
+#         return HttpResponse("You are not allowed to be here.")
+        
+#     if request.method == 'POST':
+#         form = SubmissionForm(request.POST,instance=submission)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('account')
+        
+#     context = {'form': form, 'event': event}
+#     return render(request, 'submit_form.html', context)
+
 @login_required(login_url='/login')
 def update_submission(request, pk):
     submission = Submission.objects.get(id=pk)
+
+    if request.user != submission.participant:
+        return HttpResponse('You cant be here!!!!')
+
     event = submission.event
     form = SubmissionForm(instance=submission)
-    
-    if request.user != submission.user:
-        return HttpResponse("You are not allowed to be here.")
-        
+
     if request.method == 'POST':
-        form = SubmissionForm(request.POST,instance=submission)
+        form = SubmissionForm(request.POST, instance=submission)
         if form.is_valid():
             form.save()
             return redirect('account')
-        
-    context = {'form': form, 'event': event}
+    context = {'form':form, 'event':event}
     return render(request, 'submit_form.html', context)
