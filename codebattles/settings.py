@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_h#nayy^ln@x__%vx6=w$j!5hiuk29(bf%+@qh$s-en#m6o%1+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -90,12 +90,12 @@ from secretes import PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT,DATABASE_URL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'DATABASE_URL':DATABASE_URL,
-        'NAME': PGDATABASE,
-        'USER':PGUSER,
-        'PASSWORD':PGPASSWORD,
-        'HOST':PGHOST,
-        'PORT':PGPORT
+        'DATABASE_URL': os.environ.get('DATABASE_URL'),
+        'NAME': os.environ.get("PGDATABASE"),
+        'USER':os.environ.get("PGUSER"),
+        'PASSWORD':os.environ.get("PGPASSWORD"),
+        'HOST':os.environ.get("PGHOST"),
+        'PORT':os.environ.get("PGPORT")
     }
 }
 
