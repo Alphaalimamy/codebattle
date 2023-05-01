@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,10 +85,17 @@ WSGI_APPLICATION = 'codebattles.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+from secretes import PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT,DATABASE_URL
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'DATABASE_URL':DATABASE_URL,
+        'NAME': PGDATABASE,
+        'USER':PGUSER,
+        'PASSWORD':PGPASSWORD,
+        'HOST':PGHOST,
+        'PORT':PGPORT
     }
 }
 
@@ -109,6 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+from secretes import test
 
 
 # Internationalization
