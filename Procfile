@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn codebattles.asgi
+web: python manage.py migrate && gunicorn codebattles.wsgi
