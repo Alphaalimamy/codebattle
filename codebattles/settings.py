@@ -143,8 +143,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
-    'https://codebattle.up.railway.app',
-    'https://codebattles.up.railway.app/',
+    'https://*.up.railway.app/',
     'https://codebattles.dev'
 ]
 
