@@ -89,26 +89,26 @@ WSGI_APPLICATION = 'codebattles.wsgi.application'
 
 from secretes import PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT,DATABASE_URL
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'DATABASE_URL': DATABASE_URL,
-        'NAME': PGDATABASE,
-        'USER':PGUSER,
-        'PASSWORD':PGPASSWORD,
-        'HOST':PGHOST,
-        'PORT':PGPORT
-    }
-}
-
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'DATABASE_URL': DATABASE_URL,
+#         'NAME': PGDATABASE,
+#         'USER':PGUSER,
+#         'PASSWORD':PGPASSWORD,
+#         'HOST':PGHOST,
+#         'PORT':PGPORT
 #     }
 # }
+
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 # Passw
 # ord validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -158,6 +158,8 @@ STATICFILES_DIRS =[
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
