@@ -16,6 +16,12 @@ class User(AbstractUser):
     USERNAME_FIELD ="email"
     REQUIRED_FIELDS = ['username']
 
+    twitter = models.URLField(max_length=500, null=True, blank=True)
+    linkedin = models.URLField(max_length=500, null=True, blank=True)
+    website = models.URLField(max_length=500, null=True, blank=True)
+    facebook = models.URLField(max_length=500, null=True, blank=True)
+    github = models.URLField(max_length=500, null=True, blank=True)
+
 
 class Event(models.Model):
     name = models.CharField(max_length=200)

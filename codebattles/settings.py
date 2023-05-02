@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_h#nayy^ln@x__%vx6=w$j!5hiuk29(bf%+@qh$s-en#m6o%1+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://codebattles.up.railway.app', 'codebattles.up.railway.app', '127.0.0.1']
 
 
 AUTH_USER_MODEL = 'base.User'
@@ -90,17 +90,35 @@ from secretes import PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT,DATABASE_URL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'DATABASE_URL': os.environ.get('DATABASE_URL'),
-        'NAME': os.environ.get("PGDATABASE"),
-        'USER':os.environ.get("PGUSER"),
-        'PASSWORD':os.environ.get("PGPASSWORD"),
-        'HOST':os.environ.get("PGHOST"),
-        'PORT':os.environ.get("PGPORT")
+        'DATABASE_URL': DATABASE_URL,
+        'NAME': PGDATABASE,
+        'USER':PGUSER,
+        'PASSWORD':PGPASSWORD,
+        'HOST':PGHOST,
+        'PORT':PGPORT
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'DATABASE_URL': os.environ.get('DATABASE_URL'),
+#         'NAME': os.environ.get("PGDATABASE"),
+#         'USER':os.environ.get("PGUSER"),
+#         'PASSWORD':os.environ.get("PGPASSWORD"),
+#         'HOST':os.environ.get("PGHOST"),
+#         'PORT':os.environ.get("PGPORT")
+#     }
+# }
 
 
-# Password validation
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+# Passw
+# ord validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [

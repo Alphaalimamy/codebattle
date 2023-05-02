@@ -20,7 +20,14 @@
 </section>
 
 <section class="section">
-    <h3>Users</h3>
+    <h3> 
+        {% if users.count > 1 %}
+
+        Users: {{ users.count }}
+        {% else %}
+        User: {{ users.count }} 
+        {% endif %}
+    </h3>
     <div class="users--list section">
         {% for user in users %}
         <a href="{% url 'profile' user.id %}">
