@@ -100,17 +100,7 @@ DATABASES = {
         'PORT':PGPORT
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'DATABASE_URL': os.getenv("DATABASE_URL"),
-#         'NAME': os.getenv("PGDATABASE"),
-#         'USER':os.getenv("PGUSER"),
-#         'PASSWORD':os.getenv("PGPASSWORD"),
-#         'HOST':os.getenv("PGHOST"),
-#         'PORT':os.getenv("PGPORT")
-#     }
-# }
+
 
 
 # DATABASES = {
