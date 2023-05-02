@@ -11,12 +11,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -85,30 +87,30 @@ WSGI_APPLICATION = 'codebattles.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-from secretes import PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT,DATABASE_URL
+# from secretes import PGDATABASE, PGUSER, PGPASSWORD, PGHOST, PGPORT,DATABASE_URL
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'DATABASE_URL': DATABASE_URL,
-        'NAME': PGDATABASE,
-        'USER':PGUSER,
-        'PASSWORD':PGPASSWORD,
-        'HOST':PGHOST,
-        'PORT':PGPORT
-    }
-}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'DATABASE_URL': os.environ.get('DATABASE_URL'),
-#         'NAME': os.environ.get("PGDATABASE"),
-#         'USER':os.environ.get("PGUSER"),
-#         'PASSWORD':os.environ.get("PGPASSWORD"),
-#         'HOST':os.environ.get("PGHOST"),
-#         'PORT':os.environ.get("PGPORT")
+#         'DATABASE_URL': DATABASE_URL,
+#         'NAME': PGDATABASE,
+#         'USER':PGUSER,
+#         'PASSWORD':PGPASSWORD,
+#         'HOST':PGHOST,
+#         'PORT':PGPORT
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'DATABASE_URL': os.environ.get('DATABASE_URL'),
+        'NAME': os.environ.get("PGDATABASE"),
+        'USER':os.environ.get("PGUSER"),
+        'PASSWORD':os.environ.get("PGPASSWORD"),
+        'HOST':os.environ.get("PGHOST"),
+        'PORT':os.environ.get("PGPORT")
+    }
+}
 
 
 # DATABASES = {
