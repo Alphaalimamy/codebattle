@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 import time
+from django_resized import ResizedImageField
 from datetime import datetime
 import uuid
 
@@ -9,7 +10,8 @@ class User(AbstractUser):
     name = models.CharField(max_length=255, null=True)
     email = models.EmailField(unique=True, null=True)
     bio = models.TextField(blank=True, null=True)
-    avatar = models.ImageField(default='avatar.png')
+    # avatar = models.ImageField(default='avatar.png')
+    avatar = ResizedImageField(size=[300,300], default='avatar.png')
     id = models.UUIDField(default=uuid.uuid4, unique=True,primary_key=True, editable=False)
     hackathon_participants = models.BooleanField(default=True, null=True)
     

@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.forms import UserCreationForm
+from PIL import Image
 
 from .models import User, Event, Submission
 from .forms import SubmissionForm, CustomUserCreateForm, UserForm
@@ -48,6 +49,11 @@ def register_page(request):
     return render(request, 'login_register.html', context)   
     
 def home_page(request):
+    limit = request.GET.get('limit')
+    if limit == None:
+        limit = 20
+    limit = int(limit)
+    
     users = User.objects.filter(hackathon_participants=True)
     events = Event.objects.all()
     context = {"users": users, "events": events}
@@ -62,6 +68,8 @@ def user_page(request, pk):
 @login_required(login_url="login")
 def account_page(request):
     user =request.user
+    
+    
     context ={"user": user}
     return render(request, "account.html",context)
 
@@ -80,16 +88,6 @@ def edit_account(request):
     context = {'form':form}
     return render(request, 'user_form.html', context)
 
-# @login_required(login_url='/login')
-# def event_page(request, pk):
-#     event = Event.objects.get(id=pk)
-    
-#     registered = request.user.events.filter(id=event.id).exists()
-#     submitted = Submission.objects.filter(participant=request.user, event=event).exists()
-    
-    
-#     context = {'event':event, 'registered':registered,'submitted':submitted}
-#     return render(request, "event.html", context) 
 
 def event_page(request, pk):
     event = Event.objects.get(id=pk)

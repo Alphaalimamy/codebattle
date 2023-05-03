@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="section">
+    <img  class="user--avatar--lg"   src="{{user.avatar.url}}" alt="">
     <h1>My account</h1>
 
     <a class="btn btn--warning" href="{% url 'edit-account' %}">Edit</a>
