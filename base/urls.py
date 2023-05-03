@@ -18,6 +18,11 @@ urlpatterns = [
     path('edit-account/', views.edit_account, name="edit-account"),
     
     path('account/', views.account_page, name="account"),
+    
+    path('change-password/', views.change_password, name="change-password"),
+    
+    path('', views.home_page, name="home"),
+    
     path('project-submission/<str:pk>/', views.project_submission, name="project-submission"),
     
     path('update-submission/<str:pk>', views.update_submission, name="update-submission"),

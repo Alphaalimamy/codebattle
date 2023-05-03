@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
 # from django.contrib.auth.forms import UserCreationForm
 from PIL import Image
 
@@ -87,6 +88,22 @@ def edit_account(request):
 
     context = {'form':form}
     return render(request, 'user_form.html', context)
+
+@login_required(login_url='/login')
+def change_password(request):
+    
+    if request.method == 'POST':
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        
+        if password1 == password2:
+            new_password = make_password(password1)
+            request.user.password = new_password
+            request.user.save()
+            return redirect('account')
+
+    return render(request, 'change_password.html')
+
 
 
 def event_page(request, pk):

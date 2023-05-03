@@ -6,7 +6,8 @@
     <h1>My account</h1>
 
     <a class="btn btn--warning" href="{% url 'edit-account' %}">Edit</a>
-    <a class="btn btn--warning" href="">Rest password</a>
+    <a class="btn btn--warning" href="{% url 'change-password' %}">Rest password</a>
+    <a class="btn btn--warning" href="{% url 'profile' user.id %}">Profile</a>
 </div>
 
 <div>

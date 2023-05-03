@@ -28,6 +28,7 @@
     display: block;
     width: fit-content;
     margin: 10px;
+    border: none;
 }
 
 .btn--warning{
@@ -91,6 +92,13 @@ nav a {
 .user--avatar--sm {
     height: 50px;
     width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user--avatar--lg{
+    height: 150px;
+    width: 150px;
     object-fit: cover;
     border-radius: 50%;
 }

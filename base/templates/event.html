@@ -10,7 +10,7 @@
     {% if registered %}
 
     <p class="text--success">You have already registered for this event</p>
-    
+
     {% else %}
     <a class="btn btn-primary" href="{% url 'registration-confirmation' event.id%}">Register</a>
 
@@ -39,6 +39,9 @@
                 <div class="users--wrapper">
                     <img class="user--avatar--sm" src="{{ user.avatar.url }}" alt="{{user.name}}" />
                     <h4>{{user.name}}</h4>
+                    {% if user.bio %}
+                    <p>{{user.bio|truncatechars:50}}</p>
+                    {% endif %}
                 </div>
             </a>
             {% endfor %}
