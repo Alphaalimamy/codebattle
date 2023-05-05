@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,15 +12,24 @@
 
     <!-- <script src="main.js" defer></script> -->
 </head>
+
 <body>
 
     {% include "navbar.html" %}
 
-   <section class="container--main">
-    {%  block content %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message.tags }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <section class="container--main">
+        {% block content %}
 
-    {% endblock content %}
-   </section>
-    
+        {% endblock content %}
+    </section>
+
 </body>
+
 </html>

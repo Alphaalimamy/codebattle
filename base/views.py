@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
-# from django.contrib.auth.forms import UserCreationForm
-from PIL import Image
+from django.contrib import messages
 
+from PIL import Image
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import User, Event, Submission
 from .forms import SubmissionForm, CustomUserCreateForm, UserForm
 # Create your views here.
@@ -23,13 +24,18 @@ def login_page(request):
     
         if user is not None:
             login(request, user)
+            messages.info(request, 'You have succesfully logged in.')
             return redirect('home')
+        else:
+            messages.error(request, "Email or password is incorrect")
+            return redirect('login')
         
     context = {"page": page}
     return render(request, 'login_register.html', context)
  
 def logout_user(request):
      logout(request)
+     messages.info(request, "User logged out")
      return redirect("login")
      
 def register_page(request):
@@ -43,7 +49,10 @@ def register_page(request):
             user = form.save(commit=False)
             user.save()
             login(request, user)
+            messages.success(request, "User created successfully")
             return redirect("home")
+        else:
+            messages.error(request, "An error occurred during registration")
     
     page = "register"
     context = {"page": page, "form": form}
@@ -54,11 +63,26 @@ def home_page(request):
     if limit == None:
         limit = 20
     limit = int(limit)
-    
     users = User.objects.filter(hackathon_participants=True)
-    events = Event.objects.all()
-    context = {"users": users, "events": events}
+    count = users.count()
     
+    page = request.GET.get('page')
+    paginator = Paginator(users, 20)
+
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        users = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        users = paginator.page(page)
+
+
+    pages = list(range(1, (paginator.num_pages + 1)))
+ 
+    events = Event.objects.all()
+    context = {'users':users, 'events':events, 'count':count, 'paginator':paginator, 'pages':pages}
     return render(request, "home.html", context)
 
 def user_page(request, pk):
@@ -100,6 +124,7 @@ def change_password(request):
             new_password = make_password(password1)
             request.user.password = new_password
             request.user.save()
+            messages.success(request, 'You have succesfully reset your password')
             return redirect('account')
 
     return render(request, 'change_password.html')
