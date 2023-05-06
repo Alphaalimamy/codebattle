@@ -6,6 +6,18 @@
     background-color: rgb(249, 250, 251);
 }
 
+ /*     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Readex Pro';
+    background-color: rgb(249, 250,251);
+    line-height: 1.5em;
+    color: #000;
+    font-size: 14px; *
+     {
+    color: #637287;
+}
+
 .section {
     margin: 1em 0;
 }
@@ -144,11 +156,34 @@ align-items: center;
 }
 input{
     width: 100%;
-    padding: 5px 2px;
+    padding: 10px 2px;
 }
 
 @media screen and (max-width: 1200px) {
     .container--main {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .events--list{
+        grid-template-columns: 1fr;
+    }
+
+    .users--list{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .users--list{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .users--list{
+        grid-template-columns: 1fr;
     }
 }

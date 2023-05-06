@@ -9,34 +9,34 @@
 
 <div class="section">
     {% if user.twitter %}
-    <div>
-        <a href="{{user.twitter}}" target="_blank">Twitter</a>
-    </div>
- 
-    {% elif user.website %}
-    <div>
-        <a href="{{user.website}}" target="_blank">Twitter</a>
-    </div>
-  
+            <div>
+                <a href="{{user.twitter}}" target="_blank">Twitter</a>
+            </div>
+        {% endif %}
 
-    {% elif user.facebook %}
-    <div>
-        <a href="{{user.facebook}}" target="_blank">Twitter</a>
-    </div>
-  
+        {% if user.website %}
+            <div>
+                <a href="{{user.website}}" target="_blank">Website</a>
+            </div>
+        {% endif %}
 
+        {% if user.facebook %}
+            <div>
+                <a href="{{user.facebook}}" target="_blank">Facebook</a>
+            </div>
+        {% endif %}
 
-    {% elif user.linkedin %}
-    <div>
-        <a href="{{user.linkedin}}" target="_blank">Twitter</a>
-    </div>
-  
+        {% if user.linkedin %}
+            <div>
+                <a href="{{user.linkedin}}" target="_blank">Linkedin</a>
+            </div>
+        {% endif %}
 
-    {% else user.github %}
-    <div>
-        <a href="{{user.github}}" target="_blank">Twitter</a>
-    </div>
-    {% endif %}
+        {% if user.github %}
+            <div>
+                <a href="{{user.github}}" target="_blank">github</a>
+            </div>
+        {% endif %}
 </div>
 
 <div class="section">
