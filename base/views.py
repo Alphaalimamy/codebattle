@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import User, Event, Submission
 from .forms import SubmissionForm, CustomUserCreateForm, UserForm
 # Create your views here.
-
+from datetime import datetime, timedelta
 
 def login_page(request):
     page = "login"
@@ -133,6 +133,8 @@ def change_password(request):
 
 def event_page(request, pk):
     event = Event.objects.get(id=pk)
+    
+    present = datetime.now()
     
     registered = False
     submitted = False

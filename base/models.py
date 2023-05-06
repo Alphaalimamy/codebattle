@@ -43,20 +43,20 @@ class Event(models.Model):
     class Meta:
         ordering = ['-end_date']
 
-    # @property
-    # def event_status(self):
-    #     status = None
+    @property
+    def event_status(self):
+        status = None
         
-    #     present = datetime.now().timestamp()
-    #     deadline = self.registration_deadline.timestamp()
-    #     past_deadline = (present > deadline)
+        present = datetime.now().timestamp()
+        deadline = self.registration_deadline.timestamp()
+        past_deadline = (present > deadline)
 
-    #     if past_deadline:
-    #         status = 'Finished'
-    #     else:
-    #         status = 'Ongoing'
+        if past_deadline:
+            status = 'Finished'
+        else:
+            status = 'Ongoing'
 
-    #     return status
+        return status
 
 
 class Submission(models.Model):
